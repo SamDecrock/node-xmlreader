@@ -32,7 +32,7 @@ xmlreader.read(someXml, function (err, res){
 	console.log( res.response.who.at(1).text() ) ;
 	console.log( res.response.who.at(1).location.text() );
 
-	// you can threat regular nodes as arrays:
+	// you can also get regular nodes like you get arrays:
 	console.log( res.response.notes.at(0).text() );
 });
 

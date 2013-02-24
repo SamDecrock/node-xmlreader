@@ -14,12 +14,14 @@ You can install xmlreader using the Node Package Manager (npm):
 I wanted a xml reader that's easy to use and that doesn't require tricks to access the attributes and text values of xml-nodes. Most xml parsers out there use some kind of prefix, but that's not a sound solution.
 
 I'm using functions to differentiate the attributes and text from the nodes:
-```js res.response.text() ``` and ```js res.response.attributes() ```
+
+``` res.response.attributes() ``` and ``` res.response.text() ```
 
 I also wanted a xml parser that can handle multiple nodes of the same node. Most parsers out there just ignore those or threat every node as an array.
 
 I'm using functions to get to nodes of the same name. The same functions can also be used to get to nodes where there's only one of them:
-```js res.response.who.getLength() ``` and ```js res.response.who.at(1)```
+
+``` res.response.who.getLength() ``` and ``` res.response.who.at(1) ```
 
 
 ## Example ##
@@ -59,7 +61,7 @@ xmlreader.read(someXml, function (err, res){
 	console.log( res.response.who.at(1).text() ) ;
 	console.log( res.response.who.at(1).location.text() );
 
-	// you can threat regular nodes as arrays:
+	// you can also get regular nodes like you get arrays:
 	console.log( res.response.notes.at(0).text() );
 });
 ```

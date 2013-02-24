@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git://github.com/SamDecrock/node-xmlreader.git"
   },
-  "main": "./xml",
+  "main": "./xmlreader",
   "licenses": [
     {
       "type": "MIT",
