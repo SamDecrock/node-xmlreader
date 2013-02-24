@@ -1,31 +1,4 @@
-node-xmlreader
-==============
-
-An xml reader for node that uses a different approach than all other xml readers/parsers out there.
-
-## Install
-
-You can install xmlreader using the Node Package Manager (npm):
-
-    npm install xmlreader
-
-## Introduction ##
-
-I wanted a xml reader that's easy to use and that doesn't require tricks to access the attributes and text values of xml-nodes. Most xml parsers out there use some kind of prefix, but that's not a sound solution.
-
-I'm using functions to differentiate the attributes and text from the nodes:
-```js res.response.text() ``` and ```js res.response.attributes() ```
-
-I also wanted a xml parser that can handle multiple nodes of the same node. Most parsers out there just ignore those or threat every node as an array.
-
-I'm using functions to get to nodes of the same name. The same functions can also be used to get to nodes where there's only one of them:
-```js res.response.who.getLength() ``` and ```js res.response.who.at(1)```
-
-
-## Example ##
-
-```js
-var xmlreader = require('xmlreader');
+var xmlreader = require('./xmlreader');
 
 var someXml = 	'<response id="1" shop="aldi">'
 			+ 		'This is some other content'
@@ -62,4 +35,4 @@ xmlreader.read(someXml, function (err, res){
 	// you can threat regular nodes as arrays:
 	console.log( res.response.notes.at(0).text() );
 });
-```
+

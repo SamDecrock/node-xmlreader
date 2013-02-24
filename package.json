@@ -1,0 +1,26 @@
+{
+  "name": "xmlreader",
+  "description": "node library to read xml the easy way",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sam Decrock",
+    "url": "https://github.com/SamDecrock/"
+  },
+  "bugs": {
+    "url": "https://github.com/SamDecrock/node-xmlreader/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SamDecrock/node-xmlreader.git"
+  },
+  "main": "./xml",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "dependencies": {
+    "sax": "~0.5.2"
+  }
+}
