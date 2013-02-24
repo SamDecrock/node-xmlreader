@@ -61,7 +61,7 @@ xmlreader.read(someXml, function (err, res){
 	console.log( res.response.who.at(1).text() ) ;
 	console.log( res.response.who.at(1).location.text() );
 
-	// you can also get regular nodes like you get arrays:
+	// you can also use .at() to get to nodes where there's only one of them:
 	console.log( res.response.notes.at(0).text() );
 });
 ```
