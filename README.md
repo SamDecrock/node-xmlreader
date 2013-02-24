@@ -17,7 +17,7 @@ I'm using functions to differentiate the attributes and text from the nodes:
 
 ``` node.attributes() ``` and ``` node.text() ```
 
-I also wanted a xml parser that can handle multiple nodes of the same node. Most parsers out there just ignore those or threat every node as an array.
+I also wanted a xml parser that can handle multiple nodes of the same name. Most parsers out there just ignore those or threat every node as an array.
 
 I'm using functions to get to nodes of the same name. The same functions can also be used to get to nodes where there's only one of them:
 
