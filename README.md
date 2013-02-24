@@ -15,13 +15,13 @@ I wanted a xml reader that's easy to use and that doesn't require tricks to acce
 
 I'm using functions to differentiate the attributes and text from the nodes:
 
-``` res.response.attributes() ``` and ``` res.response.text() ```
+``` node.attributes() ``` and ``` node.text() ```
 
 I also wanted a xml parser that can handle multiple nodes of the same node. Most parsers out there just ignore those or threat every node as an array.
 
 I'm using functions to get to nodes of the same name. The same functions can also be used to get to nodes where there's only one of them:
 
-``` res.response.who.getLength() ``` and ``` res.response.who.at(1) ```
+``` nodes.getLength() ``` and ``` nodes.at(1) ```
 
 
 ## Example ##
