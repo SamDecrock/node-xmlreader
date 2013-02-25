@@ -21,7 +21,7 @@ I also wanted a xml parser that can handle multiple nodes of the same name. Most
 
 I'm using functions to get to nodes of the same name. The same functions can also be used to get to nodes where there's only one of them:
 
-``` nodes.count() ``` and ``` nodes.at(1) ```
+``` nodes.count() ```, ``` nodes.at(0) ``` and ``` nodes.each() ```
 
 I'm using [sax js](https://github.com/isaacs/sax-js) created by [Isaac](https://github.com/isaacs) to do all the hard work of actually parsing the xml :-)
 
@@ -42,6 +42,12 @@ I'm using [sax js](https://github.com/isaacs/sax-js) created by [Isaac](https://
 #### get node i of a series of nodes with the same name ####
 
 	nodes.at(i)
+
+#### loop through the nodes of the same name ####
+
+	nodes.each(callback)
+
+with: callback = function(index, node) 
 
 #### get the parent node of a node ####
 
@@ -64,7 +70,7 @@ var someXml = 	'<response id="1" shop="aldi">'
 			+			'<game>Some great game</game>'
 			+			'<game>Some other great game</game>'
 			+		'</games>'
-			+		'<notes>These are some notes</notes>'
+			+		'<note>These are some notes</note>'
 			+	'</response>'
 
 xmlreader.read(someXml, function (err, res){
@@ -83,11 +89,27 @@ xmlreader.read(someXml, function (err, res){
 		console.log( res.response.who.at(i).text() );
 	}
 
+	console.log("");
+
+	// you can also use .each() to loop through the nodes of the same name:
+	res.response.who.each(function (i, who){
+		console.log( who.text() );
+	});
+
+	console.log("");
+
 	console.log( res.response.who.at(1).text() ) ;
 	console.log( res.response.who.at(1).location.text() );
 
 	// you can also use .at() to get to nodes where there's only one of them:
-	console.log( res.response.notes.at(0).text() );
+	console.log( res.response.note.at(0).text() );
+
+	console.log("");
+
+	// or loop through them as if they were a series of nodes with the same name:
+	res.response.note.each(function (i, note){
+		console.log( note.text() );
+	});
 
 	console.log("");
 

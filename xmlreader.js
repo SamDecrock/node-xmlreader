@@ -48,9 +48,10 @@ exports.read = function(xmlstring, callback){
 		// add the parent() function so that we can use it later:
 		addParentFunction(newobject, object);
 
-		// add the functions count() and at() to access the nodes as if they were multiple nodes of the same name:
+		// add the functions count(), at() and each() to access the nodes as if they were multiple nodes of the same name:
 		addCountFunction(newobject);
 		addAtFunction(newobject);
+		addEachFunction(newobject);
 
 		// check if a node with that name already exists
 		if(object[node.name]){
@@ -67,9 +68,10 @@ exports.read = function(xmlstring, callback){
 				object[node.name].array.push(newobject);
 			}
 
-			// add 2 functions to work with that array:
+			// add 3 functions to work with that array:
 			addCountFunction(object[node.name]);
 			addAtFunction(object[node.name]);
+			addEachFunction(object[node.name]);
 		}else{
 			// add the functions count() and at() to access the nodes from the array:
 			object[node.name] = newobject;
@@ -119,6 +121,23 @@ exports.read = function(xmlstring, callback){
 			}
 		}
 	}
+
+	function addEachFunction(object){
+		if(object.array){
+			object.each = function(callback){
+				for(var i in object.array){
+					callback(i, object.array[i]);
+				}
+				return;
+			}
+		}else{
+			object.each = function(callback){
+				return callback(0, object);
+			}
+		}
+	}
+
+
 
 	function addParentFunction(object, parent){
 		object.parent = function(){

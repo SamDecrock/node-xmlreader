@@ -12,7 +12,7 @@ var someXml = 	'<response id="1" shop="aldi">'
 			+			'<game>Some great game</game>'
 			+			'<game>Some other great game</game>'
 			+		'</games>'
-			+		'<notes>These are some notes</notes>'
+			+		'<note>These are some notes</note>'
 			+	'</response>'
 
 xmlreader.read(someXml, function (err, res){
@@ -31,11 +31,27 @@ xmlreader.read(someXml, function (err, res){
 		console.log( res.response.who.at(i).text() );
 	}
 
+	console.log("");
+
+	// you can also use .each() to loop through the nodes of the same name:
+	res.response.who.each(function (i, who){
+		console.log( who.text() );
+	});
+
+	console.log("");
+
 	console.log( res.response.who.at(1).text() ) ;
 	console.log( res.response.who.at(1).location.text() );
 
 	// you can also use .at() to get to nodes where there's only one of them:
-	console.log( res.response.notes.at(0).text() );
+	console.log( res.response.note.at(0).text() );
+
+	console.log("");
+
+	// or loop through them as if they were a series of nodes with the same name:
+	res.response.note.each(function (i, note){
+		console.log( note.text() );
+	});
 
 	console.log("");
 
