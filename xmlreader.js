@@ -48,7 +48,7 @@ exports.read = function(xmlstring, callback){
 		// add the parent() function so that we can use it later:
 		addParentFunction(newobject, object);
 
-		// add the functions count() and at() to access the nodes as if there were multiple nodes of the same name:
+		// add the functions count() and at() to access the nodes as if they were multiple nodes of the same name:
 		addCountFunction(newobject);
 		addAtFunction(newobject);
 
@@ -126,6 +126,6 @@ exports.read = function(xmlstring, callback){
 		}
 	}
 
-	// give the xml string to the awesome sax parser:
+	// pass the xml string to the awesome sax parser:
 	saxparser.write(xmlstring).close();
 }

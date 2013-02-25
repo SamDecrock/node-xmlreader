@@ -11,7 +11,7 @@ You can install xmlreader using the Node Package Manager (npm):
 
 ## Introduction ##
 
-I wanted a xml reader that's easy to use and that doesn't require tricks to access the attributes and text values of xml-nodes. Most xml parsers out there use some kind of prefix, but that's not a sound solution.
+I wanted a xml reader that's easy to use and that doesn't require tricks to access the attributes and text values of xml nodes. Most xml parsers out there use some kind of prefix, but that's not a sound solution.
 
 I'm using functions to differentiate the attributes and text from the nodes:
 
