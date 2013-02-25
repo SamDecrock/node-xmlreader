@@ -1,7 +1,28 @@
+/*
+Copyright (c) 2013 Sam Decrock <sam.decrock@gmail.com>
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 var sax = require("sax");
-
-
-
 
 exports.read = function(xmlstring, callback){
 	var saxparser = sax.parser(true);
@@ -10,7 +31,7 @@ exports.read = function(xmlstring, callback){
 
 	saxparser.onerror = function (err) {
 		// an error happened.
-		
+
 		return callback(err);
 	};
 
@@ -24,12 +45,14 @@ exports.read = function(xmlstring, callback){
 			}
 		};
 
-		addGetParentFunction(newobject, object);
+		// add the parent() function so that we can use it later:
+		addParentFunction(newobject, object);
 
-		// add 2 functions to the object so that the object can be accessed as if it was an array:
-		addGetLengthFunction(newobject);
+		// add the functions count() and at() to access the nodes as if there were multiple nodes of the same name:
+		addCountFunction(newobject);
 		addAtFunction(newobject);
 
+		// check if a node with that name already exists
 		if(object[node.name]){
 			// we're dealing with objects of the same name, let's wrap them in an array
 
@@ -45,10 +68,10 @@ exports.read = function(xmlstring, callback){
 			}
 
 			// add 2 functions to work with that array:
-			addGetLengthFunction(object[node.name]);
+			addCountFunction(object[node.name]);
 			addAtFunction(object[node.name]);
 		}else{
-			// we're dealing with simple objects, no array:
+			// add the functions count() and at() to access the nodes from the array:
 			object[node.name] = newobject;
 		}
 
@@ -56,27 +79,30 @@ exports.read = function(xmlstring, callback){
 		object = newobject;
 	};
 	saxparser.ontext = function (text) {
+		// add the function text() to the object to return the text value:
 		object.text = function(){
 			return text;
 		}
 	};
 
 	saxparser.onclosetag = function (node) {
-		object = object.getParent();
+		// set the object back to its parent:
+		object = object.parent();
 	}
 
 	saxparser.onend = function () {
 		return callback(null, rootobject);
 	};
 
+	// Functions that add functions like count(), at() and parent()
 	// We need closures for this:
-	function addGetLengthFunction(object){
+	function addCountFunction(object){
 		if(object.array){
-			object.getLength = function(){
+			object.count = function(){
 				return object.array.length;
 			}
 		}else{
-			object.getLength = function(){
+			object.count = function(){
 				return 1;
 			}
 		}
@@ -94,12 +120,12 @@ exports.read = function(xmlstring, callback){
 		}
 	}
 
-	function addGetParentFunction(object, parent){
-		object.getParent = function(){
+	function addParentFunction(object, parent){
+		object.parent = function(){
 			return parent;
 		}
 	}
 
-
+	// give the xml string to the awesome sax parser:
 	saxparser.write(xmlstring).close();
 }

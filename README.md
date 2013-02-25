@@ -21,8 +21,29 @@ I also wanted a xml parser that can handle multiple nodes of the same name. Most
 
 I'm using functions to get to nodes of the same name. The same functions can also be used to get to nodes where there's only one of them:
 
-``` nodes.getLength() ``` and ``` nodes.at(1) ```
+``` nodes.count() ``` and ``` nodes.at(1) ```
 
+## Functions ##
+
+#### get the attributes of a node ####
+
+	node.attributes()
+
+#### get the text of a node ####
+
+	node.text()
+
+#### get the number of nodes with the same name ####
+
+	nodes.count()
+
+#### get node i of a series of nodes with the same name ####
+
+	nodes.at(i)
+
+#### get the parent node of a node ####
+
+	node.parent()
 
 ## Example ##
 
@@ -45,6 +66,8 @@ var someXml = 	'<response id="1" shop="aldi">'
 			+	'</response>'
 
 xmlreader.read(someXml, function (err, res){
+	if(err) return console.log(err);
+
 	// use .text() to get the content of a node:
 	console.log( res.response.text() );
 
@@ -53,8 +76,8 @@ xmlreader.read(someXml, function (err, res){
 
 	console.log("");
 
-	// using the getLength() and the at() function, you can loop through nodes with the same name:
-	for(var i = 0; i < res.response.who.getLength(); i++){
+	// using the .count() and the .at() function, you can loop through nodes with the same name:
+	for(var i = 0; i < res.response.who.count(); i++){
 		console.log( res.response.who.at(i).text() );
 	}
 
@@ -63,5 +86,10 @@ xmlreader.read(someXml, function (err, res){
 
 	// you can also use .at() to get to nodes where there's only one of them:
 	console.log( res.response.notes.at(0).text() );
+
+	console.log("");
+
+	// you can also get the parent of a node using .parent():
+	console.log( res.response.who.at(1).parent().attributes().id ) ;
 });
 ```

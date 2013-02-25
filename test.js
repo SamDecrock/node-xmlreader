@@ -16,6 +16,8 @@ var someXml = 	'<response id="1" shop="aldi">'
 			+	'</response>'
 
 xmlreader.read(someXml, function (err, res){
+	if(err) return console.log(err);
+
 	// use .text() to get the content of a node:
 	console.log( res.response.text() );
 
@@ -24,8 +26,8 @@ xmlreader.read(someXml, function (err, res){
 
 	console.log("");
 
-	// using the getLength() and the at() function, you can loop through nodes with the same name:
-	for(var i = 0; i < res.response.who.getLength(); i++){
+	// using the .count() and the .at() function, you can loop through nodes with the same name:
+	for(var i = 0; i < res.response.who.count(); i++){
 		console.log( res.response.who.at(i).text() );
 	}
 
@@ -34,5 +36,11 @@ xmlreader.read(someXml, function (err, res){
 
 	// you can also use .at() to get to nodes where there's only one of them:
 	console.log( res.response.notes.at(0).text() );
+
+	console.log("");
+
+	// you can also get the parent of a node using .parent():
+	console.log( res.response.who.at(1).parent().attributes().id ) ;
 });
+
 
