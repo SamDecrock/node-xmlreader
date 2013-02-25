@@ -23,6 +23,8 @@ I'm using functions to get to nodes of the same name. The same functions can als
 
 ``` nodes.count() ``` and ``` nodes.at(1) ```
 
+I'm using [sax js](https://github.com/isaacs/sax-js) created by [Isaac](https://github.com/isaacs) to do all the hard work of actually parsing the xml :-)
+
 ## Functions ##
 
 #### get the attributes of a node ####
