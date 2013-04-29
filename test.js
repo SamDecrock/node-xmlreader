@@ -12,6 +12,9 @@ var someXml = 	'<response id="1" shop="aldi">'
 			+			'<game>Some great game</game>'
 			+			'<game>Some other great game</game>'
 			+		'</games>'
+			+		'<title>'
+            +			'<![CDATA[Some text between CDATA tags]]>'
+            +		'</title>'
 			+		'<note>These are some notes</note>'
 			+	'</response>'
 
@@ -52,6 +55,10 @@ xmlreader.read(someXml, function (err, res){
 	res.response.note.each(function (i, note){
 		console.log( note.text() );
 	});
+
+	console.log("");
+
+	console.log( res.response.title.text() );
 
 	console.log("");
 

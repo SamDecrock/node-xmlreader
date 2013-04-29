@@ -35,6 +35,8 @@ I'm using [sax js](https://github.com/isaacs/sax-js) created by [Isaac](https://
 
 	node.text()
 
+note: if CDATA is found, CDATA is returned as text()
+
 #### get the number of nodes with the same name ####
 
 	nodes.count()

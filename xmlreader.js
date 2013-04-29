@@ -80,11 +80,19 @@ exports.read = function(xmlstring, callback){
 		// set the current object to the newobject:
 		object = newobject;
 	};
+
+	saxparser.oncdata = function(cdata){
+		// add the function text() to the object to return the cdata value:
+		object.text = function(){
+			return cdata;
+		}
+	};
+
 	saxparser.ontext = function (text) {
 		// add the function text() to the object to return the text value:
-		object.text = function(){
+		!object.text ? object.text = function(){
 			return text;
-		}
+		} : null;
 	};
 
 	saxparser.onclosetag = function (node) {
