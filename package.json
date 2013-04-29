@@ -1,7 +1,7 @@
 {
   "name": "xmlreader",
   "description": "node library to read xml the easy way",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "Sam Decrock",
     "url": "https://github.com/SamDecrock/"
@@ -22,5 +22,11 @@
   ],
   "dependencies": {
     "sax": "~0.5.2"
-  }
+  },
+  "contributors": [
+    {
+      "name": "notejs",
+      "url": "https://github.com/notejs"
+    }
+  ]
 }
