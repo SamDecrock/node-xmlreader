@@ -15,9 +15,6 @@ I wanted a xml reader that's easy to use and that doesn't require tricks to acce
 
 I'm using functions to differentiate the attributes and text from the nodes:
 
-__Warning: apparently, javascript cannot distinguish between functions and objects. Therefor nodes with names like ```text```, ```count```, ```at```, ```each``` cannot be traversed.
-If someone comes up with a sound solution for this, just let me know!__
-
 ``` node.attributes() ``` and ``` node.text() ```
 
 I also wanted a xml parser that can handle multiple nodes of the same name. Most parsers out there just ignore those or threat every node as an array.
@@ -27,6 +24,10 @@ I'm using functions to get to nodes of the same name. The same functions can als
 ``` nodes.count() ```, ``` nodes.at(0) ``` and ``` nodes.each() ```
 
 I'm using [sax js](https://github.com/isaacs/sax-js) created by [Isaac](https://github.com/isaacs) to do all the hard work of actually parsing the xml :-)
+
+### Warning
+__Apparently, javascript cannot distinguish between functions and objects. Therefor nodes with names like ```text```, ```count```, ```at```, ```each``` cannot be traversed.
+If someone comes up with a sound solution for this, just let me know!__
 
 ## Functions ##
 
